@@ -5,22 +5,20 @@ const transferController = {
   transfer: async (req, res) => {
     const request = {
       amount: parseInt(req.body.amount),
-      id: req.params.id,
-      id2: req.params.id2,
+      receiver_id: req.params.receiver_id,
+      sender_id: req.params.sender_id,
     };
     try {
-      const detailSender = await usersModel.getDetail(request.id2);
-      const detailReceiver = await usersModel.getDetail(request.id);
-      if (detailSender[0].balance < request.amount) {
+      const detailSender = await usersModel.getDetail(request.sender_id);
+      const detailReceiver = await usersModel.getDetail(request.receiver_id);
+      if (parseInt(detailSender.balance) < request.amount) {
         return res.status(400).send({
-          message: `Your balance is not enough to transfer to ${detailReceiver[0].first_name}! Pleasy try again!`,
+          message: `Your balance is not enough to transfer to ${detailReceiver.first_name}! Pleasy try again!`,
         });
       }
     } catch (error) {
-      //   console.log(error);
       return res.status(500).send({ message: error });
     }
-    // console.log(request.amount);
     return transferModel
       .transfer(request)
       .then((result) => {

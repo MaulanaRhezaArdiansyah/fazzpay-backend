@@ -16,7 +16,6 @@ const authController = {
           JWT_PRIVATE_KEY,
           { expiresIn: "1 day" },
           (error, tokenResult) => {
-            // console.log(result);
             return res.status(200).send({
               message: `Hi, ${result.first_name} ${result.last_name}!`,
               data: {
@@ -35,6 +34,7 @@ const authController = {
         return res.status(500).send({ message: err });
       });
   },
+
   signup: (req, res) => {
     const { firstname, lastname, email, password, phone, balance } = req.body;
     if (
@@ -69,14 +69,11 @@ const authController = {
             file: req.file,
             balance,
           };
-          // console.log(request);
           return authModel
             .signup(request)
             .then((result) => {
-              // console.log(result);
               return res.status(201).send({
                 message: `Signup ${result.firstname} ${result.lastname} is success!`,
-                // message: `Signup is success!`,
                 data: result,
               });
             })

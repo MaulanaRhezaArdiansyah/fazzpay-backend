@@ -3,6 +3,6 @@ const router = express();
 // const usersController = require("../controllers/usersController");
 const transferController = require("../controllers/transferController");
 
-router.patch("/:id/:id2", transferController.transfer);
+router.patch("/:receiver_id/:sender_id", transferController.transfer);
 
 module.exports = router;

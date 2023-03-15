@@ -1,4 +1,6 @@
 const usersModel = require("../models/usersModel");
+const formResponse = require("../helpers/formResponse");
+const { unlink } = require("node:fs");
 
 const usersController = {
   get: (req, res) => {
@@ -6,79 +8,79 @@ const usersController = {
       .get(req.query)
       .then((result) => {
         if (result.length == 0) {
-          return res
-            .status(404)
-            .send({ data: result, message: `Data users is empty!` });
+          return formResponse(404, {}, `Data users is empty!`, res);
         }
-        return res
-          .status(200)
-          .send({ data: result, message: `Success get data users!` });
+        return formResponse(200, result, `Success get all data users!`, res);
       })
       .catch((error) => {
-        return res.status(500).send({ message: error });
+        return formResponse(500, {}, error, res);
       });
   },
+
   getDetail: (req, res) => {
     const id = req.params.id;
     return usersModel
       .getDetail(id)
       .then((result) => {
         if (result == undefined) {
-          return res
-            .status(404)
-            .send({ data: result, message: `User not found` });
+          return formResponse(404, {}, `User not found`, res);
         }
-        return res.status(200).send({
-          data: result,
-          message: `Success get data ${result[0].first_name} ${result[0].last_name}!`,
-        });
+        return formResponse(
+          200,
+          result,
+          `Success get data ${result.first_name} ${result.last_name}!`,
+          res
+        );
       })
       .catch((error) => {
-        return res.status(500).send({ message: error });
+        return formResponse(500, {}, error, res);
       });
   },
+
   remove: (req, res) => {
     const id = req.params.id;
     return usersModel
       .remove(id)
       .then((result) => {
         if (result.rowCount == 0) {
-          return res.status(404).send({ message: `User not found!` });
+          return formResponse(404, {}, `User not found`, res);
         }
-        return res.status(200).send({
-          data: result.rows,
-          message: `Deleting user ${result.rows[0].first_name} ${result.rows[0].last_name} success!`,
-        });
+        return formResponse(
+          200,
+          result.rows[0],
+          `Deleting user ${result.rows[0].first_name} ${result.rows[0].last_name} success!`,
+          res
+        );
       })
       .catch((error) => {
-        return res.status(500).send(error);
+        return formResponse(500, {}, error, res);
       });
   },
+
   updateBalanceTopUp: (req, res) => {
-    // const balanceInt = parseInt(req.body.balance);
     const request = {
-      // ...req.body,
-      // balance: balanceInt,
       balance: parseInt(req.body.balance),
       id: req.params.id,
     };
-    // console.log(request.balance);
     return usersModel
       .updateBalanceTopUp(request)
       .then((result) => {
         if (result == undefined) {
-          return res.status(404).send({ message: "User not found" });
+          return formResponse(404, {}, "User not found", res);
         } else {
-          return res.status(200).send({
-            data: result,
-            message: `Top Up success!`,
-          });
+          return formResponse(
+            200,
+            result,
+            `Top Up ${result.name} success!`,
+            res
+          );
         }
       })
       .catch((err) => {
-        return res.status(500).send({ message: err });
+        return formResponse(500, {}, err, res);
       });
   },
+
   updatePhone: (req, res) => {
     const request = {
       ...req.body,
@@ -88,18 +90,21 @@ const usersController = {
       .updatePhone(request)
       .then((result) => {
         if (result == undefined) {
-          return res.status(404).send({ message: "User not found" });
+          return formResponse(404, {}, "User not found!", res);
         } else {
-          return res.status(200).send({
-            data: result,
-            message: `Edit phone number ${result.id} success!`,
-          });
+          return formResponse(
+            200,
+            result,
+            `Edit phone number ${result.name} success!`,
+            res
+          );
         }
       })
       .catch((err) => {
-        return res.status(500).send({ message: err });
+        return formResponse(500, {}, err, res);
       });
   },
+
   updateAvatar: (req, res) => {
     const request = {
       ...req.body,
@@ -110,16 +115,21 @@ const usersController = {
       .updateAvatar(request)
       .then((result) => {
         if (result == undefined) {
-          return res.status(404).send({ message: "User not found" });
+          return formResponse(404, {}, "User not found!", res);
         } else {
-          return res.status(200).send({
-            data: result,
-            message: `Edit avatar ${result.id} success!`,
+          unlink(`public/uploads/images/${result.oldAvatar}`, () => {
+            console.log(`Successfully deleted ${result.oldAvatar}`);
           });
+          return formResponse(
+            200,
+            result,
+            `Edit avatar ${result.name} success!`,
+            res
+          );
         }
       })
       .catch((err) => {
-        return res.status(500).send({ message: err });
+        return formResponse(500, {}, err, res);
       });
   },
 };

@@ -14,24 +14,22 @@ const usersModel = {
           (page - 1) * limit
         }`,
         (error, result) => {
-          if (error) {
-            return reject(error.message);
-          }
-          return resolve(result.rows);
+          if (error) reject(error.message);
+          resolve(result.rows);
         }
       );
     });
   },
+
   getDetail: (id) => {
     return new Promise((resolve, reject) => {
       db.query(`SELECT * FROM users WHERE id = '${id}'`, (error, result) => {
-        if (error) {
-          return reject(error.message);
-        }
-        return resolve(result.rows);
+        if (error) reject(error.message);
+        resolve(result.rows[0]);
       });
     });
   },
+
   remove: (id) => {
     return new Promise((resolve, reject) => {
       db.query(
@@ -40,16 +38,15 @@ const usersModel = {
           if (errorSelect) {
             return reject(errorSelect.message);
           }
-          db.query(`DELETE FROM users WHERE id = '${id}'`, (error, result) => {
-            if (error) {
-              return reject(error.message);
-            }
-            return resolve(resultSelect);
+          db.query(`DELETE FROM users WHERE id = '${id}'`, (error) => {
+            if (error) reject(error.message);
+            resolve(resultSelect);
           });
         }
       );
     });
   },
+
   updateBalanceTopUp: ({ id, balance }) => {
     return new Promise((resolve, reject) => {
       db.query(
@@ -63,7 +60,7 @@ const usersModel = {
               UPDATE users SET balance = ${
                 parseInt(resultSelect.rows[0].balance) + parseInt(balance)
               } WHERE id = '${id}'`,
-              (error, result) => {
+              (error) => {
                 if (error) {
                   return reject(error.message);
                 } else {
@@ -75,14 +72,15 @@ const usersModel = {
                       resultSelect.rows[0].id,
                       balance,
                     ],
-                    (errorInsert, resultInsert) => {
+                    (errorInsert) => {
                       if (errorInsert) {
                         return reject(errorInsert.message);
                       } else {
                         return resolve({
                           id,
                           balance_before: resultSelect.rows[0].balance,
-                          balance,
+                          name: `${resultSelect.rows[0].first_name} ${resultSelect.rows[0].last_name}`,
+                          amount_topup: balance,
                         });
                       }
                     }
@@ -95,6 +93,7 @@ const usersModel = {
       );
     });
   },
+
   updatePhone: ({ id, phone }) => {
     return new Promise((resolve, reject) => {
       db.query(
@@ -106,11 +105,15 @@ const usersModel = {
             db.query(
               `
               UPDATE users SET phone = '${phone}' WHERE id = '${id}'`,
-              (error, result) => {
+              (error) => {
                 if (error) {
                   return reject(error.message);
                 } else {
-                  return resolve({ id, phone });
+                  return resolve({
+                    id,
+                    name: resultSelect.rows[0].first_name,
+                    phone,
+                  });
                 }
               }
             );
@@ -119,6 +122,7 @@ const usersModel = {
       );
     });
   },
+
   updateAvatar: ({ id, file }) => {
     return new Promise((resolve, reject) => {
       db.query(
@@ -132,11 +136,16 @@ const usersModel = {
               UPDATE users SET avatar = '${
                 file ? file.filename : resultSelect.rows[0].avatar
               }' WHERE id = '${id}'`,
-              (error, result) => {
+              (error) => {
                 if (error) {
                   return reject(error.message);
                 } else {
-                  return resolve({ id, avatar: file });
+                  return resolve({
+                    id,
+                    name: resultSelect.rows[0].first_name,
+                    avatar: file,
+                    oldAvatar: resultSelect.rows[0].avatar,
+                  });
                 }
               }
             );

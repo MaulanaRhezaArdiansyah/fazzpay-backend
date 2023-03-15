@@ -34,6 +34,7 @@ const authModel = {
       );
     });
   },
+
   signup: ({
     id,
     firstname,
@@ -42,7 +43,6 @@ const authModel = {
     password,
     phone = "",
     file = "",
-    // file,
     balance = 0,
   }) => {
     return new Promise((resolve, reject) => {
@@ -58,9 +58,8 @@ const authModel = {
           file.filename,
           balance,
         ],
-        (error, result) => {
+        (error) => {
           if (error) {
-            // return reject({ message: error.message });
             return reject(error.message);
           } else {
             return resolve({
@@ -71,7 +70,6 @@ const authModel = {
               password,
               phone,
               avatar: file,
-              // file,
               balance,
             });
           }

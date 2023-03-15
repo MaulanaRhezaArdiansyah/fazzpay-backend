@@ -2,10 +2,11 @@ const db = require("../helpers/db");
 const { v4: uuidv4 } = require("uuid");
 
 const transferModel = {
-  transfer: ({ id, id2, balance, amount }) => {
+  transfer: ({ receiver_id, sender_id, balance, amount }) => {
     return new Promise((resolve, reject) => {
+      // console.log(receiver_id);
       db.query(
-        `SELECT * FROM users WHERE id = '${id}'`,
+        `SELECT * FROM users WHERE id = '${receiver_id}'`,
         (errorSelect, resultSelect) => {
           if (errorSelect) {
             return reject(errorSelect.message);
@@ -13,15 +14,14 @@ const transferModel = {
             db.query(
               `UPDATE users SET balance = ${
                 parseInt(resultSelect.rows[0].balance) + parseInt(amount)
-              } WHERE id = '${id}'`,
-              (error, result) => {
+              } WHERE id = '${receiver_id}'`,
+              (error) => {
                 if (error) {
                   return reject(error.message);
                 } else {
                   db.query(
-                    `SELECT * FROM users WHERE id = '${id2}'`,
+                    `SELECT * FROM users WHERE id = '${sender_id}'`,
                     (errorSelect2, resultSelect2) => {
-                      // console.log(resultSelect.rows, resultSelect2.rows);
                       if (errorSelect2) {
                         return reject(errorSelect2.message);
                       } else {
@@ -33,7 +33,7 @@ const transferModel = {
                             resultSelect2.rows[0].id,
                             amount,
                           ],
-                          (errorInsert, resultInsert) => {
+                          (errorInsert) => {
                             if (errorInsert) {
                               return reject(errorInsert.message);
                             } else {
@@ -41,14 +41,14 @@ const transferModel = {
                                 `UPDATE users SET balance = ${
                                   parseInt(resultSelect2.rows[0].balance) -
                                   parseInt(amount)
-                                } WHERE id = '${id2}'`,
-                                (errorUpdateSender, resultUpdateSender) => {
+                                } WHERE id = '${sender_id}'`,
+                                (errorUpdateSender) => {
                                   if (errorUpdateSender) {
                                     return reject(errorUpdateSender);
                                   } else {
                                     return resolve({
-                                      id,
-                                      id2,
+                                      receiver_id,
+                                      sender_id,
                                       receiver_name:
                                         resultSelect.rows[0].first_name,
                                       sender_name:
