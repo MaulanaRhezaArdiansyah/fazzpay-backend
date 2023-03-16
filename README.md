@@ -43,7 +43,7 @@ Backend for Fazzpay App for https://github.com/MaulanaRhezaArdiansyah/fazzpay-ne
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-[![Hellojob Screen Shot][product-screenshot]](https://hellojobb.vercel.app/)
+[![Fazzpay Screen Shot][product-screenshot]](https://fazzpayy.vercel.app/)
 
 
 ## Project Link
@@ -68,12 +68,12 @@ Backend for Fazzpay App for https://github.com/MaulanaRhezaArdiansyah/fazzpay-ne
 
 ### Database Schema
 
-[![Hellojob Database Schema][hellojob-db-schema]](https://drawsql.app/teams/me-410/diagrams/fazzpay)
+[![Fazzpay Database Schema][fazzpay-db-schema]](https://drawsql.app/teams/me-410/diagrams/fazzpay)
 
 
 ### Postman Collection
 
-[Hellojob Postman Documentation](https://documenter.getpostman.com/view/23895523/2s93JwPhxk)
+[Fazzpay Postman Documentation](https://documenter.getpostman.com/view/23895523/2s93JwPhxk)
 
 
 
@@ -122,8 +122,8 @@ Maulana Rheza Ardiansyah - [@maulanarheza](https://www.linkedin.com/in/maulanarh
 
 
 <!-- LINKS -->
-[product-screenshot]: https://hellojob.up.railway.app/images/hellojob-landing-2.png
-[hellojob-db-schema]: https://hellojob.up.railway.app/images/db-schema.png
+[product-screenshot]: https://fazzpay.cyclic.app/uploads/images/fazzpay-landing.png
+[fazzpay-db-schema]: https://fazzpay.cyclic.app/uploads/images/db-schema.png
 [Express.js]: https://img.shields.io/badge/Express.js-20232A?style=for-the-badge&logo=express&logoColor=61DAFB
 [Express-url]: https://expressjs.com/
 [Supabase]: https://img.shields.io/badge/Supabase-20232A?style=for-the-badge&logo=supabase&logoColor=61DAFB
