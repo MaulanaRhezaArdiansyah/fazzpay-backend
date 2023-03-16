@@ -4,7 +4,7 @@ Backend for Fazzpay App for https://github.com/MaulanaRhezaArdiansyah/fazzpay-ne
 <br />
 <div align="center">
   <a href="https://fazzpayy.vercel.app/">
-    <h1>HelloJob</h1>
+    <h1>Fazzpay</h1>
   </a>
 
   <h3 align="center">Fazzpay Backend App</h3>
