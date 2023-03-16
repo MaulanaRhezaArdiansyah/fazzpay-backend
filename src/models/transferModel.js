@@ -4,7 +4,6 @@ const { v4: uuidv4 } = require("uuid");
 const transferModel = {
   transfer: ({ receiver_id, sender_id, balance, amount }) => {
     return new Promise((resolve, reject) => {
-      // console.log(receiver_id);
       db.query(
         `SELECT * FROM users WHERE id = '${receiver_id}'`,
         (errorSelect, resultSelect) => {
