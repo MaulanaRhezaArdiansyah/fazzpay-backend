@@ -118,7 +118,9 @@ const usersController = {
           return formResponse(404, {}, "User not found!", res);
         } else {
           unlink(`public/uploads/images/${result.oldAvatar}`, () => {
-            console.log(`Successfully deleted ${result.oldAvatar}`);
+            console.log(
+              `Successfully deleted ${result.oldAvatar} for ${result.name} profile.`
+            );
           });
           return formResponse(
             200,
