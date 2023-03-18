@@ -49,7 +49,7 @@ Backend for Fazzpay App for https://github.com/MaulanaRhezaArdiansyah/fazzpay-ne
 ## Project Link
 * Github Repo : [https://github.com/MaulanaRhezaArdiansyah/fazzpay-backend](https://github.com/MaulanaRhezaArdiansyah/fazzpay-backend)
 * Frontend Deployment : https://fazzpayy.vercel.app
-* Backend Deployment : https://fazzpay.cyclic.app/api/v1/
+* Backend Deployment : https://fazzpay.up.railway.app/api/v1/ & https://fazzpay.cyclic.app/api/v1/
 
 <p align="right">(<a href="#fazzpay-top">back to top</a>)</p>
 
@@ -122,8 +122,8 @@ Maulana Rheza Ardiansyah - [@maulanarheza](https://www.linkedin.com/in/maulanarh
 
 
 <!-- LINKS -->
-[product-screenshot]: https://fazzpay.cyclic.app/uploads/images/fazzpay-landing.png
-[fazzpay-db-schema]: https://fazzpay.cyclic.app/uploads/images/db-schema.png
+[product-screenshot]: https://fazzpay.up.railway.app/images/fazzpay-landing.png
+[fazzpay-db-schema]: https:///fazzpay.up.railway.app/images/db-schema.png
 [Express.js]: https://img.shields.io/badge/Express.js-20232A?style=for-the-badge&logo=express&logoColor=61DAFB
 [Express-url]: https://expressjs.com/
 [Supabase]: https://img.shields.io/badge/Supabase-20232A?style=for-the-badge&logo=supabase&logoColor=61DAFB
