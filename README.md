@@ -123,7 +123,7 @@ Maulana Rheza Ardiansyah - [@maulanarheza](https://www.linkedin.com/in/maulanarh
 
 <!-- LINKS -->
 [product-screenshot]: https://fazzpay.up.railway.app/images/fazzpay-landing.png
-[fazzpay-db-schema]: https:///fazzpay.up.railway.app/images/db-schema.png
+[fazzpay-db-schema]: https://fazzpay.up.railway.app/images/db-schema.png
 [Express.js]: https://img.shields.io/badge/Express.js-20232A?style=for-the-badge&logo=express&logoColor=61DAFB
 [Express-url]: https://expressjs.com/
 [Supabase]: https://img.shields.io/badge/Supabase-20232A?style=for-the-badge&logo=supabase&logoColor=61DAFB
