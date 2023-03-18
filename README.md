@@ -136,7 +136,7 @@ Maulana Rheza Ardiansyah - [@maulanarheza](https://www.linkedin.com/in/maulanarh
 [PostgreSQL-url]: https://www.postgresql.org/
 [Postman]: https://img.shields.io/badge/Postman-20232A?style=for-the-badge&logo=postman&logoColor=61DAFB
 [Postman-url]: https://www.postman.com/
-[DrawSQL]: https://img.shields.io/badge/Drawsql-20232A?style=for-the-badge&logo=drawsql&logoColor=61DAFB
+[DrawSQL]: https://img.shields.io/badge/Drawsql-20232A?style=for-the-badge&logo=drawSQL&logoColor=61DAFB
 [Drawsql-url]: https://drawsql.app/
 
 
