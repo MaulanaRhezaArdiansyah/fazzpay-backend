@@ -17,5 +17,5 @@ app.use("*", (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`FazzPay App Backend is running on port ${port}. Yuhuuu!!`);
+  console.log(`FazzPay App Backend is running on port ${port}. Yuhuuuu!!`);
 });
